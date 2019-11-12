@@ -66,7 +66,13 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(loss="binary_crossentropy",
               optimizer="adam", metrics=["accuracy"])
 
-BATCH_SIZE = 32
+BATCH_SIZE = 512
 NUM_EPOCHS = 20
 model.fit(Xtrain, ytrain, batch_size=BATCH_SIZE,
           epochs=NUM_EPOCHS, validation_data=(Xtest, ytest))
+
+pre = model.predict(Xtest)
+
+for i in range(len(pre)):
+    print(Xtest[i], ytest[i], pre[i])
+    
